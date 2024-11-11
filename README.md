@@ -127,12 +127,10 @@ module_path:module_type:module_parent:module_pom_template:module_submodules
 Define directories to be created in leaf modules:
 
 ```
-src/main/java/entity
-src/main/java/event
-src/main/java/valueobject
-src/main/java/service
-src/main/java/handler
-src/main/java/mapper
+src/main/java/com/example/core/domain/entity
+src/main/java/com/example/core/domain/event
+src/main/java/com/example/core/domain/valueobject
+src/main/java/com/example/core/domain/service
 ```
 
 ### SonarQube Modules (`SONAR_MODULES`)
