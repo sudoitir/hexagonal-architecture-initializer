@@ -55,9 +55,9 @@ BASE_DIR="$project_name"
 
 # Fetch the latest Spring Boot version using sed
 SPRING_BOOT_METADATA_URL="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-dependencies/maven-metadata.xml"
-SPRING_BOOT_VERSION=$(curl -s "$SPRING_BOOT_METADATA_URL" | sed -n 's:.*<release>\(.*\)</release>.*:\1:p')
+SPRING_BOOT_VERSION=$(curl -sk "$SPRING_BOOT_METADATA_URL" | sed -n 's:.*<release>\(.*\)</release>.*:\1:p')
 if [ -z "$SPRING_BOOT_VERSION" ]; then
-    SPRING_BOOT_VERSION=$(curl -s "$SPRING_BOOT_METADATA_URL" | sed -n 's:.*<latest>\(.*\)</latest>.*:\1:p')
+    SPRING_BOOT_VERSION=$(curl -sk "$SPRING_BOOT_METADATA_URL" | sed -n 's:.*<latest>\(.*\)</latest>.*:\1:p')
 fi
 
 if [ -z "$SPRING_BOOT_VERSION" ]; then
@@ -69,9 +69,9 @@ echo "Using Spring Boot version: $SPRING_BOOT_VERSION"
 
 # Fetch the latest Spring Cloud version using sed
 SPRING_CLOUD_METADATA_URL="https://repo1.maven.org/maven2/org/springframework/cloud/spring-cloud-dependencies/maven-metadata.xml"
-SPRING_CLOUD_VERSION=$(curl -s "$SPRING_CLOUD_METADATA_URL" | sed -n 's:.*<release>\(.*\)</release>.*:\1:p')
+SPRING_CLOUD_VERSION=$(curl -sk "$SPRING_CLOUD_METADATA_URL" | sed -n 's:.*<release>\(.*\)</release>.*:\1:p')
 if [ -z "$SPRING_CLOUD_VERSION" ]; then
-    SPRING_CLOUD_VERSION=$(curl -s "$SPRING_CLOUD_METADATA_URL" | sed -n 's:.*<latest>\(.*\)</latest>.*:\1:p')
+    SPRING_CLOUD_VERSION=$(curl -sk "$SPRING_CLOUD_METADATA_URL" | sed -n 's:.*<latest>\(.*\)</latest>.*:\1:p')
 fi
 
 if [ -z "$SPRING_CLOUD_VERSION" ]; then
