@@ -6,7 +6,7 @@ prompt_input() {
     local prompt_message="$2"
     local var_value="${!var_name}"
     if [ -z "$var_value" ]; then
-        read -p "$prompt_message: " var_value
+        read -pr "$prompt_message: " var_value
         eval "$var_name=\"$var_value\""
     fi
 }
@@ -65,7 +65,7 @@ fi
 mkdir -p "$BASE_DIR"
 
 # Initialize git repository
-cd "$BASE_DIR"
+cd "$BASE_DIR" || exit
 git init
 cd ..
 
@@ -161,7 +161,7 @@ sonar.projectKey=${groupId}:${artifactId}
 sonar.projectName=${project_name}
 sonar.projectVersion=${VERSION}
 sonar.sourceEncoding=UTF-8
-sonar.modules=$(echo $SONAR_MODULES | tr ' ' ',')
+sonar.modules=$(echo "$SONAR_MODULES" | tr ' ' ',')
 EOF
 
 # Add module-specific configurations
@@ -175,7 +175,7 @@ EOF
 done
 
 # Initialize git repository and add files
-cd "$BASE_DIR"
+cd "$BASE_DIR" || exit
 git add .
 git commit -m "Initial project structure with SonarQube configurations"
 cd ..
@@ -184,4 +184,4 @@ cd ..
 tar -czf "${project_name}.tar.gz" "$project_name"
 
 echo "Project '${project_name}' has been initialized and packaged as '${project_name}.tar.gz'."
-
+rm -rf "$BASE_DIR" || exit # Cleanup
