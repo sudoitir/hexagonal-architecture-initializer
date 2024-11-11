@@ -6,7 +6,7 @@ prompt_input() {
     local prompt_message="$2"
     local var_value="${!var_name}"
     if [ -z "$var_value" ]; then
-        read -pr "$prompt_message: " var_value
+        read -p "$prompt_message: " var_value
         eval "$var_name=\"$var_value\""
     fi
 }
